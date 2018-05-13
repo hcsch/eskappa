@@ -1,7 +1,7 @@
 {
   "name": "eskappa",
   "summary": "A simple elm remake of the game called Ecapa found on multiple website online",
-  "version": "0.0.1",
+  "version": "1.0",
   "license": "BSD3",
   "repository": "https://github.com/hcsch/eskappa.git",
   "scripts": {
