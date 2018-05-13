@@ -1,0 +1,16 @@
+# macOS files
+.DS_STORE
+Icon[]
+
+# elm files
+elm-stuff
+
+# output
+out
+
+# yarn/npm stuff
+yarn.lock
+node_modules
+
+# tmp files
+**/*.swp

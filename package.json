@@ -1,0 +1,14 @@
+{
+  "name": "eskappa",
+  "summary": "A simple elm remake of the game called Ecapa found on multiple website online",
+  "version": "0.0.1",
+  "license": "BSD3",
+  "repository": "https://github.com/hcsch/eskappa.git",
+  "scripts": {
+    "dev": "concurrently --kill-others \"watchman-make -p 'src/**/*.elm' --run ./elm-make.sh\" \"live-server out\""
+  },
+  "dependencies": {
+    "concurrently": "^3.5.1",
+    "live-server": "^1.2.0"
+  }
+}
