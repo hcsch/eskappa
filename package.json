@@ -5,7 +5,8 @@
   "license": "BSD3",
   "repository": "https://github.com/hcsch/eskappa.git",
   "scripts": {
-    "dev": "concurrently --kill-others \"watchman-make -p 'src/**/*.elm' --run ./elm-make.sh\" \"live-server out\""
+    "dev": "concurrently --kill-others \"watchman-make -p 'src/**/*.elm' --run ./elm-make.sh\" \"live-server out\"",
+    "make": "./elm-make.sh"
   },
   "dependencies": {
     "concurrently": "^3.5.1",

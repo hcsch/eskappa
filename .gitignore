@@ -1,6 +1,7 @@
 # macOS files
 .DS_STORE
-Icon[]
+Icon[
+]
 
 # elm files
 elm-stuff
@@ -14,3 +15,6 @@ node_modules
 
 # tmp files
 **/*.swp
+
+# vscode stuff
+.vscode
