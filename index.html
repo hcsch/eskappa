@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html><head><meta charset="UTF-8"><title>Main</title><style>html,head,body { padding:0; margin:0; }
+<html><head><meta charset="UTF-8"><title>Eskappa</title><style>html,head,body { padding:0; margin:0; }
 body { font-family: calibri, helvetica, arial, sans-serif; }</style><script type="text/javascript">
 (function() {
 'use strict';
@@ -11815,6 +11815,23 @@ var _elm_lang$html$Html_Events$Options = F2(
 	function (a, b) {
 		return {stopPropagation: a, preventDefault: b};
 	});
+var _hcsch$eskappa$MouseEvents$offsetDecoder = A3(
+	_elm_lang$core$Json_Decode$map2,
+	_elm_community$linear_algebra$Math_Vector2$vec2,
+	A2(_elm_lang$core$Json_Decode$field, 'offsetX', _elm_lang$core$Json_Decode$float),
+	A2(_elm_lang$core$Json_Decode$field, 'offsetY', _elm_lang$core$Json_Decode$float));
+var _hcsch$eskappa$MouseEvents$onRelMouseDown = function (tagger) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mousedown',
+		A2(_elm_lang$core$Json_Decode$map, tagger, _hcsch$eskappa$MouseEvents$offsetDecoder));
+};
+var _hcsch$eskappa$MouseEvents$onRelMouseMove = function (tagger) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mousemove',
+		A2(_elm_lang$core$Json_Decode$map, tagger, _hcsch$eskappa$MouseEvents$offsetDecoder));
+};
 var _hcsch$eskappa$Utils$elMul = F2(
 	function (v1, v2) {
 		return A2(
@@ -12033,32 +12050,15 @@ var _hcsch$eskappa$Game$movePlayer = F2(
 				});
 		}
 	});
-var _hcsch$eskappa$MouseEvents$offsetDecoder = A3(
-	_elm_lang$core$Json_Decode$map2,
-	_elm_community$linear_algebra$Math_Vector2$vec2,
-	A2(_elm_lang$core$Json_Decode$field, 'offsetX', _elm_lang$core$Json_Decode$float),
-	A2(_elm_lang$core$Json_Decode$field, 'offsetY', _elm_lang$core$Json_Decode$float));
-var _hcsch$eskappa$MouseEvents$onRelMouseDown = function (tagger) {
-	return A2(
-		_elm_lang$html$Html_Events$on,
-		'mousedown',
-		A2(_elm_lang$core$Json_Decode$map, tagger, _hcsch$eskappa$MouseEvents$offsetDecoder));
-};
-var _hcsch$eskappa$MouseEvents$onRelMouseMove = function (tagger) {
-	return A2(
-		_elm_lang$html$Html_Events$on,
-		'mousemove',
-		A2(_elm_lang$core$Json_Decode$map, tagger, _hcsch$eskappa$MouseEvents$offsetDecoder));
-};
-var _hcsch$eskappa$Main$fragmentShader = {'src': '\n        precision mediump float;\n        varying vec3 vcolor;\n        void main () {\n            gl_FragColor = vec4(vcolor, 1.0);\n        }\n    '};
-var _hcsch$eskappa$Main$vertexShader = {'src': '\n        attribute vec2 position;\n        attribute vec3 color;\n        varying vec3 vcolor;\n        void main () {\n            gl_Position = vec4(position, 0.0, 1.0);\n            vcolor = color;\n        }\n    '};
-var _hcsch$eskappa$Main$pxToGL = function (v) {
+var _hcsch$eskappa$Eskappa$fragmentShader = {'src': '\n        precision mediump float;\n        varying vec3 vcolor;\n        void main () {\n            gl_FragColor = vec4(vcolor, 1.0);\n        }\n    '};
+var _hcsch$eskappa$Eskappa$vertexShader = {'src': '\n        attribute vec2 position;\n        attribute vec3 color;\n        varying vec3 vcolor;\n        void main () {\n            gl_Position = vec4(position, 0.0, 1.0);\n            vcolor = color;\n        }\n    '};
+var _hcsch$eskappa$Eskappa$pxToGL = function (v) {
 	return A2(
 		_elm_community$linear_algebra$Math_Vector2$vec2,
 		((_elm_community$linear_algebra$Math_Vector2$getX(v) / 450) * 2) - 1,
 		0 - (((_elm_community$linear_algebra$Math_Vector2$getY(v) / 450) * 2) - 1));
 };
-var _hcsch$eskappa$Main$update = F2(
+var _hcsch$eskappa$Eskappa$update = F2(
 	function (msg, model) {
 		var _p0 = msg;
 		switch (_p0.ctor) {
@@ -12099,32 +12099,32 @@ var _hcsch$eskappa$Main$update = F2(
 				} : {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 		}
 	});
-var _hcsch$eskappa$Main$Model = F2(
+var _hcsch$eskappa$Eskappa$Model = F2(
 	function (a, b) {
 		return {game: a, mouseOffset: b};
 	});
-var _hcsch$eskappa$Main$initialModel = A2(
-	_hcsch$eskappa$Main$Model,
+var _hcsch$eskappa$Eskappa$initialModel = A2(
+	_hcsch$eskappa$Eskappa$Model,
 	_hcsch$eskappa$Game$init,
 	A2(_elm_community$linear_algebra$Math_Vector2$vec2, 0, 0));
-var _hcsch$eskappa$Main$init = {ctor: '_Tuple2', _0: _hcsch$eskappa$Main$initialModel, _1: _elm_lang$core$Platform_Cmd$none};
-var _hcsch$eskappa$Main$Vertex = F2(
+var _hcsch$eskappa$Eskappa$init = {ctor: '_Tuple2', _0: _hcsch$eskappa$Eskappa$initialModel, _1: _elm_lang$core$Platform_Cmd$none};
+var _hcsch$eskappa$Eskappa$Vertex = F2(
 	function (a, b) {
 		return {position: a, color: b};
 	});
-var _hcsch$eskappa$Main$coloredRect = F3(
+var _hcsch$eskappa$Eskappa$coloredRect = F3(
 	function (dims, pos, rectColor) {
 		return {
 			ctor: '::',
 			_0: {
 				ctor: '_Tuple3',
 				_0: A2(
-					_hcsch$eskappa$Main$Vertex,
-					_hcsch$eskappa$Main$pxToGL(pos),
+					_hcsch$eskappa$Eskappa$Vertex,
+					_hcsch$eskappa$Eskappa$pxToGL(pos),
 					rectColor),
 				_1: A2(
-					_hcsch$eskappa$Main$Vertex,
-					_hcsch$eskappa$Main$pxToGL(
+					_hcsch$eskappa$Eskappa$Vertex,
+					_hcsch$eskappa$Eskappa$pxToGL(
 						A2(
 							_elm_community$linear_algebra$Math_Vector2$add,
 							A2(
@@ -12134,8 +12134,8 @@ var _hcsch$eskappa$Main$coloredRect = F3(
 							pos)),
 					rectColor),
 				_2: A2(
-					_hcsch$eskappa$Main$Vertex,
-					_hcsch$eskappa$Main$pxToGL(
+					_hcsch$eskappa$Eskappa$Vertex,
+					_hcsch$eskappa$Eskappa$pxToGL(
 						A2(
 							_elm_community$linear_algebra$Math_Vector2$add,
 							A2(
@@ -12150,8 +12150,8 @@ var _hcsch$eskappa$Main$coloredRect = F3(
 				_0: {
 					ctor: '_Tuple3',
 					_0: A2(
-						_hcsch$eskappa$Main$Vertex,
-						_hcsch$eskappa$Main$pxToGL(
+						_hcsch$eskappa$Eskappa$Vertex,
+						_hcsch$eskappa$Eskappa$pxToGL(
 							A2(
 								_elm_community$linear_algebra$Math_Vector2$add,
 								A2(
@@ -12161,8 +12161,8 @@ var _hcsch$eskappa$Main$coloredRect = F3(
 								pos)),
 						rectColor),
 					_1: A2(
-						_hcsch$eskappa$Main$Vertex,
-						_hcsch$eskappa$Main$pxToGL(
+						_hcsch$eskappa$Eskappa$Vertex,
+						_hcsch$eskappa$Eskappa$pxToGL(
 							A2(
 								_elm_community$linear_algebra$Math_Vector2$add,
 								A2(
@@ -12172,8 +12172,8 @@ var _hcsch$eskappa$Main$coloredRect = F3(
 								pos)),
 						rectColor),
 					_2: A2(
-						_hcsch$eskappa$Main$Vertex,
-						_hcsch$eskappa$Main$pxToGL(
+						_hcsch$eskappa$Eskappa$Vertex,
+						_hcsch$eskappa$Eskappa$pxToGL(
 							A2(_elm_community$linear_algebra$Math_Vector2$add, pos, dims)),
 						rectColor)
 				},
@@ -12181,7 +12181,7 @@ var _hcsch$eskappa$Main$coloredRect = F3(
 			}
 		};
 	});
-var _hcsch$eskappa$Main$mesh = F2(
+var _hcsch$eskappa$Eskappa$mesh = F2(
 	function (entities, elapsedTime) {
 		return _elm_community$webgl$WebGL$triangles(
 			A2(
@@ -12191,18 +12191,18 @@ var _hcsch$eskappa$Main$mesh = F2(
 					_0: {
 						ctor: '_Tuple3',
 						_0: A2(
-							_hcsch$eskappa$Main$Vertex,
-							_hcsch$eskappa$Main$pxToGL(
+							_hcsch$eskappa$Eskappa$Vertex,
+							_hcsch$eskappa$Eskappa$pxToGL(
 								A2(_elm_community$linear_algebra$Math_Vector2$vec2, 50, 50)),
 							A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, 1)),
 						_1: A2(
-							_hcsch$eskappa$Main$Vertex,
-							_hcsch$eskappa$Main$pxToGL(
+							_hcsch$eskappa$Eskappa$Vertex,
+							_hcsch$eskappa$Eskappa$pxToGL(
 								A2(_elm_community$linear_algebra$Math_Vector2$vec2, 400, 50)),
 							A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, 1)),
 						_2: A2(
-							_hcsch$eskappa$Main$Vertex,
-							_hcsch$eskappa$Main$pxToGL(
+							_hcsch$eskappa$Eskappa$Vertex,
+							_hcsch$eskappa$Eskappa$pxToGL(
 								A2(_elm_community$linear_algebra$Math_Vector2$vec2, 50, 400)),
 							A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, 1))
 					},
@@ -12211,18 +12211,18 @@ var _hcsch$eskappa$Main$mesh = F2(
 						_0: {
 							ctor: '_Tuple3',
 							_0: A2(
-								_hcsch$eskappa$Main$Vertex,
-								_hcsch$eskappa$Main$pxToGL(
+								_hcsch$eskappa$Eskappa$Vertex,
+								_hcsch$eskappa$Eskappa$pxToGL(
 									A2(_elm_community$linear_algebra$Math_Vector2$vec2, 50, 400)),
 								A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, 1)),
 							_1: A2(
-								_hcsch$eskappa$Main$Vertex,
-								_hcsch$eskappa$Main$pxToGL(
+								_hcsch$eskappa$Eskappa$Vertex,
+								_hcsch$eskappa$Eskappa$pxToGL(
 									A2(_elm_community$linear_algebra$Math_Vector2$vec2, 400, 50)),
 								A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, 1)),
 							_2: A2(
-								_hcsch$eskappa$Main$Vertex,
-								_hcsch$eskappa$Main$pxToGL(
+								_hcsch$eskappa$Eskappa$Vertex,
+								_hcsch$eskappa$Eskappa$pxToGL(
 									A2(_elm_community$linear_algebra$Math_Vector2$vec2, 400, 400)),
 								A3(_elm_community$linear_algebra$Math_Vector3$vec3, 1, 1, 1))
 						},
@@ -12236,18 +12236,18 @@ var _hcsch$eskappa$Main$mesh = F2(
 							return A2(
 								_elm_lang$core$Basics_ops['++'],
 								acc,
-								A3(_hcsch$eskappa$Main$coloredRect, entity.dimensions, entity.position, entity.bgColor));
+								A3(_hcsch$eskappa$Eskappa$coloredRect, entity.dimensions, entity.position, entity.bgColor));
 						}),
 					{ctor: '[]'},
 					entities)));
 	});
-var _hcsch$eskappa$Main$MouseMove = function (a) {
+var _hcsch$eskappa$Eskappa$MouseMove = function (a) {
 	return {ctor: 'MouseMove', _0: a};
 };
-var _hcsch$eskappa$Main$MouseDown = function (a) {
+var _hcsch$eskappa$Eskappa$MouseDown = function (a) {
 	return {ctor: 'MouseDown', _0: a};
 };
-var _hcsch$eskappa$Main$view = function (model) {
+var _hcsch$eskappa$Eskappa$view = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
 		{ctor: '[]'},
@@ -12318,10 +12318,10 @@ var _hcsch$eskappa$Main$view = function (model) {
 									}),
 								_1: {
 									ctor: '::',
-									_0: _hcsch$eskappa$MouseEvents$onRelMouseDown(_hcsch$eskappa$Main$MouseDown),
+									_0: _hcsch$eskappa$MouseEvents$onRelMouseDown(_hcsch$eskappa$Eskappa$MouseDown),
 									_1: {
 										ctor: '::',
-										_0: _hcsch$eskappa$MouseEvents$onRelMouseMove(_hcsch$eskappa$Main$MouseMove),
+										_0: _hcsch$eskappa$MouseEvents$onRelMouseMove(_hcsch$eskappa$Eskappa$MouseMove),
 										_1: {ctor: '[]'}
 									}
 								}
@@ -12332,10 +12332,10 @@ var _hcsch$eskappa$Main$view = function (model) {
 						ctor: '::',
 						_0: A4(
 							_elm_community$webgl$WebGL$entity,
-							_hcsch$eskappa$Main$vertexShader,
-							_hcsch$eskappa$Main$fragmentShader,
+							_hcsch$eskappa$Eskappa$vertexShader,
+							_hcsch$eskappa$Eskappa$fragmentShader,
 							A2(
-								_hcsch$eskappa$Main$mesh,
+								_hcsch$eskappa$Eskappa$mesh,
 								{
 									ctor: '::',
 									_0: model.game.player,
@@ -12432,18 +12432,18 @@ var _hcsch$eskappa$Main$view = function (model) {
 			}
 		});
 };
-var _hcsch$eskappa$Main$Step = function (a) {
+var _hcsch$eskappa$Eskappa$Step = function (a) {
 	return {ctor: 'Step', _0: a};
 };
-var _hcsch$eskappa$Main$subscriptions = function (model) {
-	return model.game.running ? _elm_lang$animation_frame$AnimationFrame$diffs(_hcsch$eskappa$Main$Step) : _elm_lang$core$Platform_Sub$none;
+var _hcsch$eskappa$Eskappa$subscriptions = function (model) {
+	return model.game.running ? _elm_lang$animation_frame$AnimationFrame$diffs(_hcsch$eskappa$Eskappa$Step) : _elm_lang$core$Platform_Sub$none;
 };
-var _hcsch$eskappa$Main$main = _elm_lang$html$Html$program(
-	{init: _hcsch$eskappa$Main$init, view: _hcsch$eskappa$Main$view, subscriptions: _hcsch$eskappa$Main$subscriptions, update: _hcsch$eskappa$Main$update})();
+var _hcsch$eskappa$Eskappa$main = _elm_lang$html$Html$program(
+	{init: _hcsch$eskappa$Eskappa$init, view: _hcsch$eskappa$Eskappa$view, subscriptions: _hcsch$eskappa$Eskappa$subscriptions, update: _hcsch$eskappa$Eskappa$update})();
 var Elm = {};
-Elm['Main'] = Elm['Main'] || {};
-if (typeof _hcsch$eskappa$Main$main !== 'undefined') {
-    _hcsch$eskappa$Main$main(Elm['Main'], 'Main', undefined);
+Elm['Eskappa'] = Elm['Eskappa'] || {};
+if (typeof _hcsch$eskappa$Eskappa$main !== 'undefined') {
+    _hcsch$eskappa$Eskappa$main(Elm['Eskappa'], 'Eskappa', undefined);
 }
 
 if (typeof define === "function" && define['amd'])
@@ -12475,4 +12475,4 @@ for (var publicModule in Elm)
 }
 
 }).call(this);
-</script></head><body><script type="text/javascript">Elm.Main.fullscreen()</script></body></html>
+</script></head><body><script type="text/javascript">Elm.Eskappa.fullscreen()</script></body></html>

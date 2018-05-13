@@ -1,4 +1,4 @@
-module Main exposing (main)
+module Eskappa exposing (main)
 
 {-
    WebGL GUI for the Game with some simple html around it
