@@ -1,6 +1,6 @@
 # Sκ
 A simple re-make of the game Escapa, which can be found on multiple pages online.
-(The origin and author of this game is unknown as far as I am aware, so I am currently unable to credit the author)
+(The origin and author of this game are unknown as far as I am aware, so I am currently unable to credit the author)
 
 The re-make is written in elm, makes use of WebGL and a very rudimentary set of html elements to display the game.
 
